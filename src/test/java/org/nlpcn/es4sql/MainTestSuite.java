@@ -1,6 +1,18 @@
 package org.nlpcn.es4sql;
 
-import static org.nlpcn.es4sql.TestsConstants.*;
+import static org.nlpcn.es4sql.TestsConstants.TEST_INDEX;
+import static org.nlpcn.es4sql.TestsConstants.TEST_INDEX_ACCOUNT;
+import static org.nlpcn.es4sql.TestsConstants.TEST_INDEX_DOG;
+import static org.nlpcn.es4sql.TestsConstants.TEST_INDEX_GAME_OF_THRONES;
+import static org.nlpcn.es4sql.TestsConstants.TEST_INDEX_JOIN_TYPE;
+import static org.nlpcn.es4sql.TestsConstants.TEST_INDEX_LOCATION;
+import static org.nlpcn.es4sql.TestsConstants.TEST_INDEX_LOCATION2;
+import static org.nlpcn.es4sql.TestsConstants.TEST_INDEX_NESTED_TYPE;
+import static org.nlpcn.es4sql.TestsConstants.TEST_INDEX_ODBC;
+import static org.nlpcn.es4sql.TestsConstants.TEST_INDEX_ONLINE;
+import static org.nlpcn.es4sql.TestsConstants.TEST_INDEX_PEOPLE;
+import static org.nlpcn.es4sql.TestsConstants.TEST_INDEX_PHRASE;
+import static org.nlpcn.es4sql.TestsConstants.TEST_INDEX_SYSTEM;
 
 import java.io.FileInputStream;
 import java.net.InetAddress;
@@ -16,7 +28,7 @@ import org.elasticsearch.common.xcontent.XContentType;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.index.reindex.DeleteByQueryAction;
 import org.elasticsearch.index.reindex.DeleteByQueryRequestBuilder;
-import org.elasticsearch.xpack.client.PreBuiltXPackTransportClient;
+import org.elasticsearch.transport.client.PreBuiltTransportClient;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
@@ -50,7 +62,7 @@ public class MainTestSuite {
 	@BeforeClass
 	public static void setUp() throws Exception {
 		Settings settings = Settings.builder().put("client.transport.ignore_cluster_name",true).build();
-		client = new PreBuiltXPackTransportClient(settings).addTransportAddress(getTransportAddress());
+        client = new PreBuiltTransportClient(settings).addTransportAddress(getTransportAddress());
 
         NodesInfoResponse nodeInfos = client.admin().cluster().prepareNodesInfo().get();
 		String clusterName = nodeInfos.getClusterName().value();

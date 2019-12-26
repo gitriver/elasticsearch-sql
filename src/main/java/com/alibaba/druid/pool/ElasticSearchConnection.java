@@ -1,7 +1,5 @@
 package com.alibaba.druid.pool;
 
-import org.elasticsearch.client.Client;
-
 import java.sql.Array;
 import java.sql.Blob;
 import java.sql.CallableStatement;
@@ -20,6 +18,8 @@ import java.sql.Struct;
 import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.Executor;
+
+import org.elasticsearch.client.Client;
 
 /**
  * Created by allwefantasy on 8/30/16.
